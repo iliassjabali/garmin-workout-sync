@@ -1,0 +1,47 @@
+{
+  "_comment": "Example week: aerobic-base runs/bike (HR-capped) + a machine push day. No personal data. Dates are placeholders - edit before pushing. Exercise weights go in 'note' (Garmin's API can't pre-set load).",
+  "workouts": [
+    {
+      "date": "2099-01-07",
+      "sport": "running",
+      "name": "Base | Tue Threshold",
+      "replaceByPrefix": "Base |",
+      "steps": [
+        {"kind": "warmup", "minutes": 15, "hrLow": 120, "hrHigh": 150, "note": "Easy warmup"},
+        {"kind": "interval", "minutes": 24, "hrLow": 138, "hrHigh": 150, "note": "Z2 steady"},
+        {"kind": "cooldown", "minutes": 10, "hrLow": 110, "hrHigh": 145}
+      ]
+    },
+    {
+      "date": "2099-01-08",
+      "sport": "cycling",
+      "name": "Base | Wed Easy Ride",
+      "replaceByPrefix": "Base |",
+      "steps": [
+        {"kind": "interval", "minutes": 50, "hrLow": 110, "hrHigh": 140, "note": "Z2, smooth cadence"}
+      ]
+    },
+    {
+      "date": "2099-01-10",
+      "sport": "strength",
+      "name": "Base | Sat Push (Machines)",
+      "replaceByPrefix": "Base |",
+      "steps": [
+        {"block": {"sets": 4, "exercise": "INCLINE_BARBELL_BENCH_PRESS", "category": "BENCH_PRESS",
+                   "reps": 8, "restSec": 120, "note": "RPE 8, +2.5kg when 8 reps easy"}},
+        {"block": {"sets": 4, "exercise": null, "category": "BENCH_PRESS",
+                   "reps": 10, "restSec": 90, "note": "Machine Chest Press"}},
+        {"block": {"sets": 3, "exercise": null, "category": "FLYE",
+                   "reps": 14, "restSec": 60, "note": "Pec Deck"}},
+        {"block": {"sets": 4, "exercise": "CABLE_OVERHEAD_TRICEPS_EXTENSION", "category": "TRICEPS_EXTENSION",
+                   "reps": 12, "restSec": 60, "note": "Long head"}},
+        {"block": {"sets": 3, "exercise": "CRUNCH", "category": "CRUNCH", "reps": 20, "restSec": 30}},
+        {"circuit": {"rounds": 2, "restSec": 75, "stations": [
+          {"category": "SQUAT", "exercise": "WALL_BALL", "reps": 15, "note": "controlled"},
+          {"category": "LUNGE", "exercise": "WALKING_LUNGE", "reps": 20},
+          {"category": "CARRY", "exercise": "FARMERS_CARRY", "meters": 40, "note": "steady"}
+        ]}}
+      ]
+    }
+  ]
+}

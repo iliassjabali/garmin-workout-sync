@@ -1,0 +1,6 @@
+{
+  "age": 30,
+  "restingHr": 55,
+  "maxHr": 190,
+  "_comment": "Copy to profile.json and set your real values. profile.json is gitignored. maxHr optional - if omitted it is estimated from age. Zones are computed from these (Karvonen + MAF)."
+}
