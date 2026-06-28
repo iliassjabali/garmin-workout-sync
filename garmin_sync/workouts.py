@@ -53,10 +53,16 @@ def _cardio_step(o: _Order, step: dict) -> dict:
         "type": "ExecutableStepDTO",
         "stepOrder": o.next(),
         "stepType": {"stepTypeId": _STEP_TYPE[kind], "stepTypeKey": kind},
-        "endCondition": {"conditionTypeId": _COND["time"], "conditionTypeKey": "time"},
-        "endConditionValue": float(step["minutes"]) * 60.0,
         "description": step.get("note", ""),
     }
+    # End condition: distance (km/meters) takes precedence over time (minutes).
+    if "km" in step or "meters" in step:
+        meters = float(step["meters"]) if "meters" in step else float(step["km"]) * 1000.0
+        s["endCondition"] = {"conditionTypeId": _COND["distance"], "conditionTypeKey": "distance"}
+        s["endConditionValue"] = meters
+    else:
+        s["endCondition"] = {"conditionTypeId": _COND["time"], "conditionTypeKey": "time"}
+        s["endConditionValue"] = float(step["minutes"]) * 60.0
     if "hrLow" in step and "hrHigh" in step:
         s.update(_hr_target(step["hrLow"], step["hrHigh"]))
     return s

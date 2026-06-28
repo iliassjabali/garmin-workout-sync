@@ -23,6 +23,33 @@ def test_running_cardio_workout_has_hr_targets_and_sequential_order():
     assert mid["endConditionValue"] == 2400.0
 
 
+def test_distance_cardio_step_uses_distance_end_condition():
+    w = {
+        "sport": "running", "name": "8k Easy",
+        "steps": [
+            {"kind": "interval", "km": 8, "hrLow": 140, "hrHigh": 154, "note": "Z2"},
+        ],
+    }
+    out = workouts.build_workout(w)
+    step = out["workoutSegments"][0]["workoutSteps"][0]
+    assert step["endCondition"]["conditionTypeKey"] == "distance"
+    # km -> meters
+    assert step["endConditionValue"] == 8000.0
+    # HR target still applied
+    assert step["targetType"]["workoutTargetTypeKey"] == "heart.rate.zone"
+    assert step["targetValueOne"] == 140.0
+    assert step["targetValueTwo"] == 154.0
+
+
+def test_meters_cardio_step_uses_distance_end_condition():
+    w = {"sport": "running", "name": "strides",
+         "steps": [{"kind": "interval", "meters": 400}]}
+    out = workouts.build_workout(w)
+    step = out["workoutSegments"][0]["workoutSteps"][0]
+    assert step["endCondition"]["conditionTypeKey"] == "distance"
+    assert step["endConditionValue"] == 400.0
+
+
 def test_strength_block_becomes_repeat_group():
     w = {
         "sport": "strength", "name": "Push",
