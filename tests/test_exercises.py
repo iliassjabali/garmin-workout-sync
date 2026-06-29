@@ -47,6 +47,15 @@ def test_catalog_contains_verified_machine_and_hyrox_names():
     assert "FACE_PULL" in exercises.CATALOG["ROW"]  # face pull lives under ROW, not SHOULDER_PRESS
 
 
+def test_dumbbell_and_rear_delt_enums_resolve():
+    # Verified by round-trip in the athlete's own logged Garmin sessions.
+    assert "INCLINE_DUMBBELL_BENCH_PRESS" in exercises.CATALOG["BENCH_PRESS"]
+    assert "SEATED_REAR_LATERAL_RAISE" in exercises.CATALOG["LATERAL_RAISE"]
+    r = exercises.resolve("LATERAL_RAISE", "SEATED_REAR_LATERAL_RAISE")
+    assert r.exercise_name == "SEATED_REAR_LATERAL_RAISE"
+    assert r.is_generic is False
+
+
 def test_face_pull_under_shoulder_press_is_generic():
     # SHOULDER_PRESS/FACE_PULL nulls; only ROW/FACE_PULL resolves.
     r = exercises.resolve("SHOULDER_PRESS", "FACE_PULL")

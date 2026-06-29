@@ -22,12 +22,14 @@ class InvalidCategory(ValueError):
 # category -> set of exerciseName values verified to resolve under that category
 CATALOG: dict[str, set[str]] = {
     # --- Chest / push ---
-    "BENCH_PRESS": {"INCLINE_BARBELL_BENCH_PRESS", "BARBELL_BENCH_PRESS"},
+    "BENCH_PRESS": {"INCLINE_BARBELL_BENCH_PRESS", "BARBELL_BENCH_PRESS",
+                    "INCLINE_DUMBBELL_BENCH_PRESS"},
     "FLYE": set(),            # pec deck / cable crossover -> generic FLYE + note
     "PUSH_UP": {"PUSH_UP"},
     # --- Shoulders ---
     "SHOULDER_PRESS": {"BARBELL_SHOULDER_PRESS", "SMITH_MACHINE_OVERHEAD_PRESS", "PUSH_PRESS"},
-    "LATERAL_RAISE": {"FRONT_RAISE", "DUMBBELL_LATERAL_RAISE"},  # no cable lateral enum -> generic
+    "LATERAL_RAISE": {"FRONT_RAISE", "DUMBBELL_LATERAL_RAISE",
+                      "SEATED_REAR_LATERAL_RAISE"},  # no cable lateral enum -> generic
     # --- Back / pull ---
     "PULL_UP": {"LAT_PULLDOWN", "WIDE_GRIP_LAT_PULLDOWN", "CHIN_UP", "ASSISTED_PULL_UP", "PULL_UP"},
     "ROW": {"SEATED_CABLE_ROW", "BARBELL_ROW", "T_BAR_ROW", "INVERTED_ROW", "DUMBBELL_ROW", "FACE_PULL"},
